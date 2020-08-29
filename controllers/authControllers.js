@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 // handling email and password errors 
 const handleErrors = (err) => {
-    console.log(err.message, err.code);
 
     let errors = {email: '', password: ''}
 
@@ -86,4 +85,9 @@ module.exports.login_post = async (req, res) => {
         const errors = handleErrors(err)
         res.status(400).json({errors})
     }
+}
+
+module.exports.logout_get = (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.redirect('/')
 }
