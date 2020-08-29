@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
@@ -23,4 +23,4 @@ mongoose.connect(process.env.dbURI, {useNewUrlParser: true, useUnifiedTopology: 
 // routes 
 app.get('/', (req, res) => res.render('home'))
 app.get('/smoothies', (req, res) => res.render('smoothies'))
-
+app.use(authRoutes)
